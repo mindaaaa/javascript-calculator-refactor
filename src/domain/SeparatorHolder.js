@@ -1,7 +1,13 @@
 class SeparatorHolder {
   getSeparators(customSeparator) {
-    console.log(`[SeparatorHolder] 구분자 목록 생성`);
-    return [',', ':', customSeparator];
+    return this.#createRegex(customSeparator);
+  }
+
+  #createRegex(customSeparator) {
+    if (customSeparator) {
+      return new RegExp(`[:,${customSeparator}]`);
+    }
+    return new RegExp(`[:,]`);
   }
 }
 

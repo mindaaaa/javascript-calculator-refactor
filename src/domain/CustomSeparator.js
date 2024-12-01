@@ -1,4 +1,3 @@
-// 커스텀 구분자를 판별한다.
 class CustomSeparator {
   extract(input) {
     return this.#getCustomSeparator(input);

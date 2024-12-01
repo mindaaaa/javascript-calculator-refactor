@@ -6,8 +6,6 @@ import SeparatorHolder from './domain/SeparatorHolder.js';
 import OperandCreator from './domain/OperandCreator.js';
 import Calculator from './domain/Calculator.js';
 
-// validator
-// customseparator
 // separatorHolder
 // operandCreator
 // calculator
@@ -21,11 +19,12 @@ class App {
 
       const validator = new Validator();
       validator.validate(userInput);
-      ConsoleOutput.write('검증 완료');
 
       const customSeparator = new CustomSeparator();
+      const separator = customSeparator.extract(userInput);
+
       const separatorHolder = new SeparatorHolder(customSeparator.extract());
-      const separators = separatorHolder.getSeparators();
+      const separators = separatorHolder.getSeparators(separator);
 
       ConsoleOutput.write(`구분자 목록: ${separators.join(' ')}`);
 
@@ -66,14 +65,6 @@ export default App;
 // }
 
 // export default App;
-
-// export function getCustomSeparator(userInput) {
-//   const customSeparator = userInput.match(/^\/\/(\D)\\n/);
-
-//   return Array.isArray(customSeparator) && customSeparator.length
-//     ? customSeparator[1]
-//     : null;
-// }
 
 // export function computeResult(customSeparator, formattedUserInput) {
 //   const regex = customSeparator
