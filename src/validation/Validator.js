@@ -1,4 +1,3 @@
-// 값의 유효성을 검사한다.
 class Validator {
   validate(userInput, customSeparator = null) {
     const regex = this.#createRegex(customSeparator);

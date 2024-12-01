@@ -1,8 +1,17 @@
 // 커스텀 구분자를 판별한다.
 class CustomSeparator {
   extract(input) {
-    console.log(`[CustomSeparator] 사용자 정의 구분자 추출: ${input}`);
-    return ';';
+    return this.#getCustomSeparator(input);
+  }
+
+  #getCustomSeparator(input) {
+    const customSeparator = input.match(/^\/\/(.)\\n/);
+
+    if (customSeparator && customSeparator[1]) {
+      return customSeparator.match[1];
+    }
+
+    return null;
   }
 }
 

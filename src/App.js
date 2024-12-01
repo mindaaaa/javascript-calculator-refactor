@@ -13,9 +13,7 @@ import Calculator from './domain/Calculator.js';
 // calculator
 class App {
   async run() {
-    ConsoleOutput.write('---프로그램 시작---');
     try {
-      // 입력
       const userInput = await ConsoleInput.read(
         '덧셈할 문자열을 입력해 주세요.\n'
       );
@@ -37,9 +35,7 @@ class App {
 
       const calculator = new Calculator(numbers);
       const result = calculator.sum(numbers);
-      ConsoleOutput.write(`결과: ${result}`);
-
-      ConsoleOutput.write('---프로그램 종료---');
+      ConsoleOutput.write(`결과: ${result}\n`);
     } catch (error) {
       ConsoleOutput.writeError(error.message);
     }
