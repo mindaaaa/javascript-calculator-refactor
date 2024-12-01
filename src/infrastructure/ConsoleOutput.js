@@ -1,11 +1,11 @@
 import { Console } from '@woowacourse/mission-utils';
 
 class ConsoleOutput {
-  print(message) {
+  write(message) {
     Console.print(message);
   }
 
-  printError(error) {
+  writeError(error) {
     Console.print(`[ERROR] ${error}`);
   }
 }

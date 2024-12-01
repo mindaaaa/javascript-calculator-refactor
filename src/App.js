@@ -13,35 +13,35 @@ import Calculator from './domain/Calculator.js';
 // calculator
 class App {
   async run() {
-    ConsoleOutput.print('---프로그램 시작---');
+    ConsoleOutput.write('---프로그램 시작---');
     try {
       // 입력
       const userInput = await ConsoleInput.read(
         '덧셈할 문자열을 입력해 주세요.\n'
       );
-      ConsoleOutput.print(`입력 값: ${userInput}`);
+      ConsoleOutput.write(`입력 값: ${userInput}`);
 
       const validator = new Validator();
       validator.validate(userInput);
-      ConsoleOutput.print('검증 완료');
+      ConsoleOutput.write('검증 완료');
 
       const customSeparator = new CustomSeparator();
       const separatorHolder = new SeparatorHolder(customSeparator.extract());
       const separators = separatorHolder.getSeparators();
 
-      ConsoleOutput.print(`구분자 목록: ${separators.join(' ')}`);
+      ConsoleOutput.write(`구분자 목록: ${separators.join(' ')}`);
 
       const operandCreator = new OperandCreator(userInput, separators);
       const numbers = operandCreator.createOperands(userInput, separators);
-      ConsoleOutput.print(`숫자 배열: ${numbers}`);
+      ConsoleOutput.write(`숫자 배열: ${numbers}`);
 
       const calculator = new Calculator(numbers);
       const result = calculator.sum(numbers);
-      ConsoleOutput.print(`계산 결과: ${result}`);
+      ConsoleOutput.write(`결과: ${result}`);
 
-      ConsoleOutput.print('---프로그램 종료---');
+      ConsoleOutput.write('---프로그램 종료---');
     } catch (error) {
-      ConsoleOutput.printError(error);
+      ConsoleOutput.writeError(error.message);
     }
   }
 }
@@ -77,16 +77,6 @@ export default App;
 //   return Array.isArray(customSeparator) && customSeparator.length
 //     ? customSeparator[1]
 //     : null;
-// }
-
-// export function validateUserInput(customSeparator, formattedUserInput) {
-//   const regex = customSeparator
-//     ? new RegExp(`\\s|^\\d+([,:${customSeparator}]\\d+)*$`)
-//     : /\s|^\d+([,:]\d+)*$/;
-
-//   if (!formattedUserInput.match(regex)) {
-//     throw new Error('[ERROR]');
-//   }
 // }
 
 // export function computeResult(customSeparator, formattedUserInput) {
