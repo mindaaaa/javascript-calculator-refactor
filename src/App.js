@@ -6,7 +6,6 @@ import SeparatorHolder from './domain/SeparatorHolder.js';
 import OperandCreator from './domain/OperandCreator.js';
 import Calculator from './domain/Calculator.js';
 
-// operandCreator
 // calculator
 class App {
   async run() {
@@ -25,13 +24,14 @@ class App {
       const separatorHolder = new SeparatorHolder();
       const separators = separatorHolder.getSeparators(customSeparator);
 
-      ConsoleOutput.write(`구분자 목록: ${separators.join(' ')}`);
+      const operandCreator = new OperandCreator();
+      const operandArray = operandCreator.createOperands(
+        userInput,
+        customSeparator,
+        separators
+      );
 
-      const operandCreator = new OperandCreator(userInput, separators);
-      const numbers = operandCreator.createOperands(userInput, separators);
-      ConsoleOutput.write(`숫자 배열: ${numbers}`);
-
-      const calculator = new Calculator(numbers);
+      const calculator = new Calculator();
       const result = calculator.sum(numbers);
       ConsoleOutput.write(`결과: ${result}\n`);
     } catch (error) {
