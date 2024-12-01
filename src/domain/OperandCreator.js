@@ -7,7 +7,7 @@ class OperandCreator {
 
   #formatUserInput(input, customSeparator) {
     if (customSeparator) {
-      return input.replace(/^\/\/\D\\n/, '');
+      return input.replace(/^\/\/(.)\\n/, '');
     }
     return input;
   }

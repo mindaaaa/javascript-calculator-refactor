@@ -7,7 +7,7 @@ class CustomSeparator {
     const customSeparator = input.match(/^\/\/(.)\\n/);
 
     if (customSeparator && customSeparator[1]) {
-      return customSeparator.match[1];
+      return customSeparator[1];
     }
 
     return null;

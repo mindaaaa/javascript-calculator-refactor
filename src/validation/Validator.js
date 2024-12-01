@@ -1,5 +1,5 @@
 class Validator {
-  validate(userInput, customSeparator = null) {
+  validateInput(userInput, customSeparator = null) {
     const regex = this.#createRegex(customSeparator);
 
     if (!regex.test(userInput)) {
@@ -7,9 +7,15 @@ class Validator {
     }
   }
 
+  validateResult(result) {
+    if (isNaN(result)) {
+      throw new Error('결과가 숫자가 아닙니다.');
+    }
+  }
+
   #createRegex(customSeparator) {
     if (customSeparator) {
-      return new RegExp(`\\s|^\\d+([,:${customSeparator}]\\d+)*$`);
+      return /^\/\/(.)\\n/;
     }
     return /\s|^\d+([,:]\d+)*$/;
   }

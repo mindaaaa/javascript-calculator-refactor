@@ -6,20 +6,18 @@ import SeparatorHolder from './domain/SeparatorHolder.js';
 import OperandCreator from './domain/OperandCreator.js';
 import Calculator from './domain/Calculator.js';
 
-// calculator
 class App {
   async run() {
     try {
       const userInput = await ConsoleInput.read(
         '덧셈할 문자열을 입력해 주세요.\n'
       );
-      ConsoleOutput.write(`입력 값: ${userInput}`);
-
-      const validator = new Validator();
-      validator.validate(userInput);
 
       const separatorProcessor = new CustomSeparator();
       const customSeparator = separatorProcessor.extract(userInput);
+
+      const validator = new Validator();
+      validator.validateInput(userInput, customSeparator);
 
       const separatorHolder = new SeparatorHolder();
       const separators = separatorHolder.getSeparators(customSeparator);
@@ -32,8 +30,10 @@ class App {
       );
 
       const calculator = new Calculator();
-      const result = calculator.sum(numbers);
-      ConsoleOutput.write(`결과: ${result}\n`);
+      const result = calculator.sum(operandArray);
+
+      validator.validateResult(result);
+      ConsoleOutput.write(`결과: ${result}`);
     } catch (error) {
       ConsoleOutput.writeError(error.message);
     }
@@ -41,33 +41,3 @@ class App {
 }
 
 export default App;
-// class App {
-//   async run() {
-//     const userInput = await Console.readLineAsync(
-//       '덧셈할 문자열을 입력해 주세요.\n'
-//     );
-
-//     try {
-//       validateUserInput(customSeparator, formattedUserInput);
-//       const result = computeResult(customSeparator, formattedUserInput);
-//       Console.print(`결과 : ${result}`);
-//     } catch (error) {
-//       Console.print('[ERROR]');
-//       throw error;
-//     }
-//   }
-// }
-
-// export default App;
-
-//   const result = formattedUserInput
-//     .split(regex)
-//     .map(Number)
-//     .reduce((acc, cur) => acc + cur, 0);
-
-//   if (isNaN(result)) {
-//     throw new Error('[ERROR]');
-//   }
-
-//   return result;
-// }
