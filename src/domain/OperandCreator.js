@@ -1,7 +1,15 @@
 class OperandCreator {
-  createOperands(input, separators) {
-    console.log(`[OperandCreator] 숫자 배열 생성: ${input}, ${separators}`);
-    return [1, 2, 3];
+  createOperands(input, customSeparator, separators) {
+    const formattedInput = this.#formatUserInput(input, customSeparator);
+
+    return formattedInput.split(separators).map(Number);
+  }
+
+  #formatUserInput(input, customSeparator) {
+    if (customSeparator) {
+      return input.replace(/^\/\/\D\\n/, '');
+    }
+    return input;
   }
 }
 

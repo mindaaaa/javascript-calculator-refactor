@@ -6,7 +6,6 @@ import SeparatorHolder from './domain/SeparatorHolder.js';
 import OperandCreator from './domain/OperandCreator.js';
 import Calculator from './domain/Calculator.js';
 
-// separatorHolder
 // operandCreator
 // calculator
 class App {
@@ -20,11 +19,11 @@ class App {
       const validator = new Validator();
       validator.validate(userInput);
 
-      const customSeparator = new CustomSeparator();
-      const separator = customSeparator.extract(userInput);
+      const separatorProcessor = new CustomSeparator();
+      const customSeparator = separatorProcessor.extract(userInput);
 
-      const separatorHolder = new SeparatorHolder(customSeparator.extract());
-      const separators = separatorHolder.getSeparators(separator);
+      const separatorHolder = new SeparatorHolder();
+      const separators = separatorHolder.getSeparators(customSeparator);
 
       ConsoleOutput.write(`구분자 목록: ${separators.join(' ')}`);
 
@@ -48,11 +47,6 @@ export default App;
 //       '덧셈할 문자열을 입력해 주세요.\n'
 //     );
 
-//     const customSeparator = getCustomSeparator(userInput);
-//     const formattedUserInput = customSeparator
-//       ? userInput.replace(/^\/\/\D\\n/, '')
-//       : userInput;
-
 //     try {
 //       validateUserInput(customSeparator, formattedUserInput);
 //       const result = computeResult(customSeparator, formattedUserInput);
@@ -65,11 +59,6 @@ export default App;
 // }
 
 // export default App;
-
-// export function computeResult(customSeparator, formattedUserInput) {
-//   const regex = customSeparator
-//     ? new RegExp(`[:,${customSeparator}]`)
-//     : new RegExp(`[:,]`);
 
 //   const result = formattedUserInput
 //     .split(regex)
