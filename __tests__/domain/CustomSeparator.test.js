@@ -1,11 +1,12 @@
 import CustomSeparator from '../../src/domain/CustomSeparator';
 
-describe('CustomSeparator 클래스', () => {
+describe('CustomSeparator 클래스 테스트', () => {
   let customSeparator;
 
   beforeEach(() => {
     customSeparator = new CustomSeparator();
   });
+
   test('커스텀 구분자를 가져올 수 있다.', () => {
     const result = customSeparator.extract('//;\\n1;2;3');
     expect(result).toBe(';');
