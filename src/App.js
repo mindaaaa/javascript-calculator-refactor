@@ -29,13 +29,16 @@ class App {
         separators
       );
 
+      validator.validatePositive(operandArray);
+
       const calculator = new Calculator();
       const result = calculator.sum(operandArray);
 
       validator.validateResult(result);
-      ConsoleOutput.write(`결과: ${result}`);
+      ConsoleOutput.write(`결과 : ${result}`);
     } catch (error) {
       ConsoleOutput.writeError(error.message);
+      throw error;
     }
   }
 }
